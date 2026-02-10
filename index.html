@@ -5,121 +5,121 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Valentine 💗</title>
 <style>
-  body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    font-family: 'Poppins', 'Comic Sans MS', sans-serif;
-    overflow: hidden;
-  }
-  .card {
-    background: white;
-    padding: 28px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    max-width: 420px;
-    width: 92%;
-    position: relative;
-    z-index: 100;
-  }
-  h1 {
-    color: #ff4d6d;
-    margin-bottom: 22px;
-    font-size: clamp(20px, 5vw, 28px);
-  }
-  .buttons {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  button {
-    border: none;
-    border-radius: 14px;
-    padding: 14px 22px;
-    font-size: clamp(16px, 4.5vw, 18px);
-    cursor: pointer;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    position: relative;
-    z-index: 101;
-  }
-  #yesBtn {
-    background-color: #ff4d6d;
-    color: white;
-    box-shadow: 0 6px 14px rgba(255,77,109,.35);
-  }
-  #noBtn {
-    background-color: #e0e0e0;
-    color: #333;
-  }
-  .message {
-    margin-top: 22px;
-    font-size: clamp(18px, 5vw, 22px);
-    color: #ff4d6d;
-    font-weight: 700;
-  }
-  /* Floating hearts */
-  .heart {
-    position: fixed;
-    bottom: -20px;
-    font-size: 22px;
-    animation: floatUp 6s linear infinite;
-    opacity: 0.85;
-    pointer-events: none;
-    z-index: 1;
-  }
-  @keyframes floatUp {
-    0% { transform: translateY(0) scale(1); opacity: 0.9; }
-    100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
-  }
-  /* Confetti */
-  .confetti {
-    position: fixed;
-    top: -10px;
-    width: 8px;
-    height: 14px;
-    opacity: 0.9;
-    animation: confettiFall linear forwards;
-    pointer-events: none;
-    z-index: 1;
-  }
-  @keyframes confettiFall {
-    to { transform: translateY(110vh) rotate(720deg); }
-  }
-  /* Mobile tap prompt */
-  #tapPrompt {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    background: rgba(255,255,255,0.95);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 500;
-    cursor: pointer;
-    text-align: center;
-  }
-  #tapPrompt h2 {
-    color:#ff4d6d;
-    font-size:24px;
-  }
-  @media (max-width: 360px) {
-    .card { padding: 22px; }
-    .buttons { gap: 12px; }
-  }
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  font-family: 'Poppins', 'Comic Sans MS', sans-serif;
+  overflow: hidden;
+}
+.card {
+  background: white;
+  padding: 28px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  max-width: 420px;
+  width: 92%;
+  position: relative;
+  z-index: 100;
+}
+h1 {
+  color: #ff4d6d;
+  margin-bottom: 22px;
+  font-size: clamp(20px, 5vw, 28px);
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+button {
+  border: none;
+  border-radius: 14px;
+  padding: 14px 22px;
+  font-size: clamp(16px, 4.5vw, 18px);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  z-index: 101;
+}
+#yesBtn {
+  background-color: #ff4d6d;
+  color: white;
+  box-shadow: 0 6px 14px rgba(255,77,109,.35);
+}
+#noBtn {
+  background-color: #e0e0e0;
+  color: #333;
+}
+.message {
+  margin-top: 22px;
+  font-size: clamp(18px, 5vw, 22px);
+  color: #ff4d6d;
+  font-weight: 700;
+}
+/* Floating hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 22px;
+  animation: floatUp 6s linear infinite;
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 1;
+}
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity: 0.9; }
+  100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+}
+/* Confetti */
+.confetti {
+  position: fixed;
+  top: -10px;
+  width: 8px;
+  height: 14px;
+  opacity: 0.9;
+  animation: confettiFall linear forwards;
+  pointer-events: none;
+  z-index: 1;
+}
+@keyframes confettiFall {
+  to { transform: translateY(110vh) rotate(720deg); }
+}
+/* Mobile tap prompt */
+#tapPrompt {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(255,255,255,0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 500;
+  cursor: pointer;
+  text-align: center;
+}
+#tapPrompt h2 {
+  color:#ff4d6d;
+  font-size:24px;
+}
+@media (max-width: 360px) {
+  .card { padding: 22px; }
+  .buttons { gap: 12px; }
+}
 </style>
 </head>
 <body>
 
-<audio id="bgMusic" src="when-she-loved-me.mp3" loop></audio>
+<audio id="bgMusic" src="when-she-loved-me.mp3" loop muted playsinline></audio>
 
-<!-- Tap prompt for mobile -->
+<!-- Tap prompt for mobile only -->
 <div id="tapPrompt"><h2>Tap anywhere to turn on music 🎵</h2></div>
 
 <div class="card">
@@ -212,15 +212,26 @@ const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 if (isMobile) {
   tapPrompt.style.display = 'flex';
   tapPrompt.addEventListener('click', () => {
+    bgMusic.muted = false;
     bgMusic.volume = 0.8;
     bgMusic.play().catch(()=>{});
     tapPrompt.style.display = 'none';
   });
 } else {
-  // Desktop autoplay
-  bgMusic.volume = 0.8;
+  // Desktop autoplay (muted first, then unmute on first click)
   bgMusic.play().catch(()=>{});
 }
+
+// Unmute desktop after first button click
+function enableDesktopAudio() {
+  if (!isMobile && bgMusic.muted) {
+    bgMusic.muted = false;
+    bgMusic.volume = 0.8;
+    bgMusic.play().catch(()=>{});
+  }
+}
+yesBtn.addEventListener('click', enableDesktopAudio);
+noBtn.addEventListener('click', enableDesktopAudio);
 
 // YES button
 yesBtn.addEventListener('click', () => {

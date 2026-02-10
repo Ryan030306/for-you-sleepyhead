@@ -52,13 +52,13 @@ button {
   color: #333;
 }
 .message {
-  margin-bottom: 22px;
+  margin-top: 16px;
   font-size: clamp(16px, 4vw, 20px);
   font-weight: 700;
 }
 /* Poem container */
 .poem {
-  max-height: 60vh;
+  max-height: 55vh;
   overflow-y: auto;
   text-align: left;
   padding: 10px 14px;
@@ -98,7 +98,7 @@ button {
 @media (max-width: 360px) {
   .card { padding: 22px; }
   button { font-size: clamp(14px,4vw,16px); }
-  .poem { max-height: 55vh; }
+  .poem { max-height: 50vh; }
 }
 </style>
 </head>
@@ -155,7 +155,6 @@ And now I hold His gift of love.
 </div>`, btn:"Cute!"}
 ];
 
-// Track sequence
 let seqIndex = 0;
 
 function nextSequence() {
@@ -164,6 +163,7 @@ function nextSequence() {
     textEl.innerHTML = sequence[seqIndex].msg;
     buttonContainer.innerHTML = `<button id="nextBtn">${sequence[seqIndex].btn}</button>`;
     document.getElementById('nextBtn').addEventListener('click', nextSequence);
+    unmuteMusic(); // music unmute on first click
   } else {
     showValentinePrompt();
   }

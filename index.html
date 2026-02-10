@@ -142,16 +142,16 @@ const noTexts = [
   "pls sleepyhead 🥺",
   "mangluod nako 😭",
   "Yes and unli sweets for you 🍬",
-  "Pleeaaaaseee 😖"
-  "Caring btaw 😖"
-  "Cute ha 😖"
-  "sabog daw pero gwapa 😭"
-  "maawa ka naman 😭"
-  "kusion ang mo di"
-  "Blehhh"
-  "Sincere na kaya ko 🥺"
-  "No lies here 🥺"
-  "Trust me? 😖"
+  "Pleeaaaaseee 😖",
+  "Caring btaw 😖",
+  "Cute ha 😖",
+  "sabog daw pero gwapa 😭",
+  "maawa ka naman 😭",
+  "kusion ang mo di",
+  "Blehhh",
+  "Sincere na kaya ko 🥺",
+  "No lies here 🥺",
+  "Trust me? 😖",
   "Yes or Yes? 😖"
 ];
 
@@ -160,7 +160,7 @@ let yesScale = 1;
 
 // NO button logic
 noBtn.addEventListener('click', () => {
-  noBtn.textContent = noTexts[Math.min(noClickCount, noTexts.length - 1)] || "You have no choice 😌";
+  noBtn.textContent = noTexts[Math.min(noClickCount, noTexts.length - 1)];
   noClickCount++;
   yesScale += 0.18;
   yesBtn.style.transform = `scale(${yesScale})`;

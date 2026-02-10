@@ -1,169 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Valentine 💗</title>
 <style>
-body {
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  font-family: 'Poppins', 'Comic Sans MS', sans-serif;
-  overflow: hidden;
-}
-.card {
-  background: white;
-  padding: 28px;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  max-width: 420px;
-  width: 92%;
-  position: relative;
-  z-index: 100;
-}
-h1 {
-  color: #ff4d6d;
-  margin-bottom: 22px;
-  font-size: clamp(20px, 5vw, 28px);
-  opacity: 1;
-  transition: opacity 0.5s ease;
-}
-.buttons {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  opacity: 1;
-  transition: opacity 0.5s ease;
-}
-button {
-  border: none;
-  border-radius: 14px;
-  padding: 14px 22px;
-  font-size: clamp(16px, 4.5vw, 18px);
-  cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.5s ease;
-  position: relative;
-  z-index: 101;
-}
-#yesBtn {
-  background-color: #ff4d6d;
-  color: white;
-  box-shadow: 0 6px 14px rgba(255,77,109,.35);
-}
-#noBtn {
-  background-color: #e0e0e0;
-  color: #333;
-}
-.message {
-  margin-top: 22px;
-  font-size: clamp(16px, 4vw, 20px);
-  color: #ff4d6d;
-  font-weight: 700;
-  opacity: 1;
-  transition: opacity 0.5s ease;
-}
-/* Floating hearts */
-.heart {
-  position: fixed;
-  bottom: -20px;
-  font-size: 22px;
-  animation: floatUp 6s linear infinite;
-  opacity: 0.85;
-  pointer-events: none;
-  z-index: 1;
-}
-@keyframes floatUp {
-  0% { transform: translateY(0) scale(1); opacity: 0.9; }
-  100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
-}
-/* Confetti */
-.confetti {
-  position: fixed;
-  top: -10px;
-  width: 8px;
-  height: 14px;
-  opacity: 0.9;
-  animation: confettiFall linear forwards;
-  pointer-events: none;
-  z-index: 1;
-}
-@keyframes confettiFall {
-  to { transform: translateY(110vh) rotate(720deg); }
-}
-@media (max-width: 360px) {
-  .card { padding: 22px; }
-  .buttons { gap: 12px; }
-  .message { font-size: 14px; }
-}
+  body {
+    margin: 0;
+    font-family: 'Poppins', 'Comic Sans MS', sans-serif;
+    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: 28px;
+    max-width: 450px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 10;
+  }
+  h1 {
+    color: #ff4d6d;
+    font-size: clamp(20px, 5vw, 28px);
+    margin-bottom: 22px;
+  }
+  button {
+    padding: 12px 24px;
+    font-size: clamp(16px, 4.5vw, 18px);
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    margin-top: 16px;
+    background: #ff4d6d;
+    color: white;
+    transition: transform 0.3s ease;
+  }
+  .message {
+    color: #ff4d6d;
+    font-weight: 700;
+    font-size: clamp(16px,4.5vw,20px);
+    min-height: 24px;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  /* Poem styling */
+  .poem {
+    color: #ff4d6d;
+    font-size: clamp(14px,3.5vw,16px);
+    line-height: 1.5;
+    margin-top: 16px;
+    max-height: 180px;
+    overflow-y: auto;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  /* Floating hearts */
+  .heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 22px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.85;
+    pointer-events: none;
+    z-index: 1;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 0.9; }
+    100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+  }
+  /* Confetti */
+  .confetti {
+    position: fixed;
+    top: -10px;
+    width: 8px;
+    height: 14px;
+    opacity: 0.9;
+    animation: confettiFall linear forwards;
+    pointer-events: none;
+    z-index: 1;
+  }
+  @keyframes confettiFall {
+    to { transform: translateY(110vh) rotate(720deg); }
+  }
+  @media(max-width:360px){
+    .card {padding:22px;}
+  }
 </style>
 </head>
 <body>
 
-<audio id="bgMusic" src="when-she-loved-me.mp3" loop autoplay playsinline></audio>
+<audio id="bgMusic" src="when-she-loved-me.mp3" autoplay loop></audio>
 
 <div class="card">
-  <h1 id="mainText">Hey sleepyhead</h1>
-  <div class="buttons">
-    <button id="mainBtn">Hey!</button>
-  </div>
+  <h1>💖</h1>
   <div class="message" id="message"></div>
+  <div class="poem" id="poem"></div>
+  <button id="nextBtn">Start</button>
 </div>
 
 <script>
-// Elements
+const messageEl = document.getElementById('message');
+const poemEl = document.getElementById('poem');
+const btn = document.getElementById('nextBtn');
 const bgMusic = document.getElementById('bgMusic');
+
 bgMusic.volume = 0.8;
-bgMusic.muted = false;
-bgMusic.play().catch(()=>{});
-
-const mainText = document.getElementById('mainText');
-const mainBtn = document.getElementById('mainBtn');
-const message = document.getElementById('message');
-
-let noClickCount = 0;
-let yesScale = 1;
-
-// NO teasing messages
-const noTexts = [
-  "Are you sure?",
-  "pls sleepyhead 🥺",
-  "mangluod nako 😭",
-  "Yes and unli sweets for you 🍬",
-  "Pleeaaaaseee 😖",
-  "Caring btaw 😖",
-  "Cute ha 😖",
-  "sabog daw pero gwapa 😭",
-  "maawa ka naman 😭",
-  "kusion ang mo di",
-  "Blehhh",
-  "Sincere na kaya ko 🥺",
-  "No lies here 🥺",
-  "Trust me? 😖",
-  "Yes or Yes? 😖"
-];
-
-// Fade utility
-function fade(element, callback){
-  element.style.opacity = 0;
-  setTimeout(()=>{
-    callback();
-    element.style.opacity = 1;
-  },400);
-}
+bgMusic.play().catch(()=>{}); // desktop autoplay
 
 // Floating hearts
 function createHeart(){
   const heart = document.createElement('div');
-  heart.className='heart';
-  heart.textContent=Math.random()>0.5?'💖':'💗';
-  heart.style.left=Math.random()*100+'vw';
-  heart.style.animationDuration=4+Math.random()*4+'s';
+  heart.className = 'heart';
+  heart.textContent = Math.random()>0.5?'💖':'💗';
+  heart.style.left = Math.random()*100+'vw';
+  heart.style.animationDuration = 4+Math.random()*4+'s';
   document.body.appendChild(heart);
   setTimeout(()=>heart.remove(),7000);
 }
@@ -172,213 +129,231 @@ setInterval(createHeart,500);
 // Confetti
 function confettiBurst(count=120){
   for(let i=0;i<count;i++){
-    const c=document.createElement('div');
+    const c = document.createElement('div');
     c.className='confetti';
-    c.style.left=Math.random()*100+'vw';
-    c.style.background=`hsl(${Math.random()*360},90%,60%)`;
-    c.style.animationDuration=2+Math.random()*2+'s';
+    c.style.left = Math.random()*100+'vw';
+    c.style.background = `hsl(${Math.random()*360},90%,60%)`;
+    c.style.animationDuration = 2+Math.random()*2+'s';
     document.body.appendChild(c);
     setTimeout(()=>c.remove(),4000);
   }
 }
 
-// Extra hearts
+// Hearts on YES
 function heartRain(count=40){
   for(let i=0;i<count;i++){
-    const h=document.createElement('div');
+    const h = document.createElement('div');
     h.className='heart';
     h.textContent='💞';
-    h.style.left=Math.random()*100+'vw';
+    h.style.left = Math.random()*100+'vw';
     h.style.animationDuration=3+Math.random()*3+'s';
     document.body.appendChild(h);
     setTimeout(()=>h.remove(),5000);
   }
 }
 
-// Flow sequence
-const sequence = [
-  { msg: "Hey sleepyhead", btn: "Hey!" },
-  { msg: "Tired?", btn: "Yes!" },
-  { msg: "It's okay, hopefully this will cheer you up", btn: "Okay!" },
-  { msg: "If I were to describe you in my life it would be...", btn: "What?" },
-  { msg: "Four Leaf Clover", btn: "Why?" },
-  // Poem lines
-  { poem:true, lines:[
-    "I found you where the green grass grew,",
-    "In quiet days and morning dew.",
-    "I walked alone with open hands,",
-    "Until God gently changed my plans.",
-    "One leaf of faith He showed me first,",
-    "A promise spoken, calm not forced.",
-    "He led my heart, I followed through,",
-    "And in that faith, He led to you.",
-    "Another leaf of hope appeared,",
-    "In whispered dreams I held so dear.",
-    "It said be patient, love will stay,",
-    "What blooms in time will not decay.",
-    "The third is love so warm and true,",
-    "A steady light I see in you.",
-    "Not loud or fast, but deep and kind,",
-    "A quiet peace I hoped to find.",
-    "The fourth is luck, or so they say,",
-    "But luck is grace in gentle play.",
-    "For every step that brought us near,",
-    "Was God’s own hand that placed you here.",
-    "So in this clover, rare and small,",
-    "I see His purpose through it all.",
-    "By faith alone our paths once clove,",
-    "And now I hold His gift of love."
-  ], btn:"Cute!" },
+// All prompts and poem lines
+const flow = [
+  {msg:"Hey Sleepyhead", btn:"Hey!"},
+  {msg:"Tired?", btn:"Yes!"},
+  {msg:"It's okay hopefully this will cheer you up", btn:"Okay!"},
+  {msg:"If I were to describe you in my life it would be...", btn:"What?"},
+  {msg:"Four Leaf Clover", btn:"Why?"},
+  {poem:`Four Leaf Clover
 
-  // Emotional + sweet messages (including sleepy teasing)
-  { msg:"That's how much you mean to me.", btn:"Thank You" },
-  { msg:"I've been wanting to say this properly.", btn:"Say it" },
-  { msg:"But I wanted you to feel it first.", btn:"I do" },
-  { msg:"Because the most important question comes after…", btn:"What?" },
-  { msg:"I'd want to start by being honest with you.", btn:"Okay" },
-  { msg:"About the little things that made me notice you.", btn:"Like what?" },
-  { msg:"If I was given a chance then…", btn:"Then" },
+I found you where the green grass grew,
+In quiet days and morning dew.
+I walked alone with open hands,
+Until God gently changed my plans.
 
-  // Build-up
-  { msg:"You know what's funny?", btn:"What?" },
-  { msg:"Out of all the people I meet every day…", btn:"And?" },
-  { msg:"You're the one that makes my day feel lighter.", btn:"Aww 🥹" },
-  { msg:"Even when nothing special happens.", btn:"Really?" },
-  { msg:"Just talking to you already feels enough.", btn:"🥺" },
+One leaf of faith He showed me first,
+A promise spoken, calm not forced.
+He led my heart, I followed through,
+And in that faith, He led to you.
 
-  // Sleepy cute part
-  { msg:"Even when you're sleepy 😴", btn:"Hey!" },
-  { msg:"Or pretending you're not.", btn:"I am NOT" },
-  { msg:"Especially when you're sleepy actually.", btn:"Excuse me??" },
-  { msg:"Because you look cute without even trying.", btn:"Stop 😳" },
-  { msg:"And that's not something you can fake.", btn:"😳" },
+Another leaf of hope appeared,
+In whispered dreams I held so dear.
+It said be patient, love will stay,
+What blooms in time will not decay.
+
+The third is love so warm and true,
+A steady light I see in you.
+Not loud or fast, but deep and kind,
+A quiet peace I hoped to find.
+
+The fourth is luck, or so they say,
+But luck is grace in gentle play.
+For every step that brought us near,
+Was God’s own hand that placed you here.
+
+So in this clover, rare and small,
+I see His purpose through it all.
+By faith alone our paths once clove,
+And now I hold His gift of love.`, btn:"Cute!"},
+  {msg:"That's how much you mean to me.", btn:"Thank You"},
+  {msg:"I've been wanting to say this properly ✨", btn:"Say it"},
+  {msg:"But I wanted you to feel it first ✨", btn:"I do"},
+  {msg:"Because the most important question comes after...", btn:"What?"},
+  {msg:"I'd want to start by being honest with you.", btn:"Okay"},
+  {msg:"About the little things that made me notice you.", btn:"Like what?"},
+  {msg:"If I was given a chance then...", btn:"Then"},
+
+  // Emotional Build-Up
+  {msg:"You know what's funny?", btn:"What?"},
+  {msg:"Out of all the people I meet every day...", btn:"And?"},
+  {msg:"You're the one that makes my day feel lighter.", btn:"Aww 🥹"},
+  {msg:"Even when nothing special happens ✨", btn:"Really?"},
+  {msg:"Just talking to you already feels enough ✨", btn:"🥺"},
+
+  // Sleepy cute
+  {msg:"Even when you're sleepy 😴", btn:"Hey!"},
+  {msg:"Or pretending you're not.", btn:"I am NOT"},
+  {msg:"Especially when you're sleepy actually.", btn:"Excuse me??"},
+  {msg:"Because you look cute without even trying.", btn:"Stop 😳"},
+  {msg:"And that's not something you can fake ✨", btn:"😳"},
 
   // Honesty moment
-  { msg:"I'm serious.", btn:"You better be" },
-  { msg:"I don't say things like this easily.", btn:"Oh?" },
-  { msg:"I usually keep these thoughts to myself.", btn:"Really?" },
-  { msg:"But when I do say them…", btn:"Yes?" },
-  { msg:"I mean it.", btn:"Okay…" },
-  { msg:"And I mean you.", btn:"Me?" },
-  { msg:"Yeah. You.", btn:"Why me?" },
-
-  // Why you
-  { msg:"Because being around you feels… right.", btn:"🥺" },
-  { msg:"Not forced.", btn:"Hmm" },
-  { msg:"Not complicated.", btn:"Okay" },
-  { msg:"Just… comfortable.", btn:"🥹" },
-
-  // Nervous confession
-  { msg:"So now I'm kind of nervous.", btn:"Why?" },
-  { msg:"Because I don't want to mess this up.", btn:"You won't" },
-  { msg:"And because this actually matters to me.", btn:"🥺" },
+  {msg:"I'm serious.", btn:"You better be"},
+  {msg:"I don't say things like this easily.", btn:"Oh?"},
+  {msg:"I usually keep these thoughts to myself ✨", btn:"Really?"},
+  {msg:"But when I do say them...", btn:"Yes?"},
+  {msg:"I mean it.", btn:"Okay..."},
+  {msg:"And I mean you.", btn:"Me?"},
+  {msg:"Yeah. You.", btn:"Why me?"},
+  {msg:"Because being around you feels... right.", btn:"🥺"},
+  {msg:"Not forced ✨", btn:"Hmm"},
+  {msg:"Not complicated ✨", btn:"Okay"},
+  {msg:"Just... comfortable ✨", btn:"🥹"},
+  {msg:"So now I'm kind of nervous.", btn:"Why?"},
+  {msg:"Because I don't want to mess this up.", btn:"You won't"},
+  {msg:"And because this actually matters to me ✨", btn:"🥺"},
 
   // Playful teasing
-  { msg:"Okay okay… let me tease you a bit.", btn:"Oh no" },
-  { msg:"You know how you're kinda short?", btn:"EXCUSE ME?" },
-  { msg:"WAIT— that's not an insult 😭", btn:"It better not be" },
-  { msg:"It actually fits perfectly with me.", btn:"How?" },
-  { msg:"Because I get to lean down…", btn:"And?" },
-  { msg:"And you get to look up at me.", btn:"😳" },
-  { msg:"See? Perfect match.", btn:"You're silly" },
+  {msg:"Okay okay... let me tease you a bit.", btn:"Oh no"},
+  {msg:"You know how you're kinda short?", btn:"EXCUSE ME?"},
+  {msg:"WAIT— that's not an insult 😭", btn:"It better not be"},
+  {msg:"It actually fits perfectly with me.", btn:"How?"},
+  {msg:"Because I get to lean down...", btn:"And?"},
+  {msg:"And you get to look up at me.", btn:"😳"},
+  {msg:"See? Perfect match ✨", btn:"You're silly"},
 
   // Safe space
-  { msg:"I tease you a lot, I know.", btn:"You do 😅" },
-  { msg:"But that's only because I'm comfortable around you.", btn:"Oh?" },
-  { msg:"I don't let my guard down easily.", btn:"Really?" },
-  { msg:"And with you… I don't feel like I need to.", btn:"🥺" },
-  { msg:"To me, you're a safe space.", btn:"💗" },
-  { msg:"Someone I genuinely want to know more as a person.", btn:"That's sweet" },
+  {msg:"I tease you a lot, I know.", btn:"You do 😅"},
+  {msg:"But that's only because I'm comfortable around you.", btn:"Oh?"},
+  {msg:"I don't let my guard down easily ✨", btn:"Really?"},
+  {msg:"And with you... I don't feel like I need to ✨", btn:"🥺"},
+  {msg:"To me, you're a safe space.", btn:"💗"},
+  {msg:"Someone I genuinely want to know more as a person.", btn:"That's sweet"},
 
-  // Core message
-  { msg:"Your qualities are already there.", btn:"Like what?" },
-  { msg:"You're kind.", btn:"🥹" },
-  { msg:"You're thoughtful.", btn:"Stop 😭" },
-  { msg:"You're beautiful.", btn:"😳" },
-  { msg:"But what I like most about you…", btn:"What?" },
-  { msg:"Is your whole existence.", btn:"🥺💗" },
-  { msg:"Why you?", btn:"Why?" },
-  { msg:"Because I chose you.", btn:"🥹" },
+  // Why you
+  {msg:"Your qualities are already there.", btn:"Like what?"},
+  {msg:"You're kind ✨", btn:"🥹"},
+  {msg:"You're thoughtful ✨", btn:"Stop 😭"},
+  {msg:"You're beautiful ✨", btn:"😳"},
+  {msg:"But what I like most about you...", btn:"What?"},
+  {msg:"Is your whole existence.", btn:"🥺💗"},
+  {msg:"Why you?", btn:"Why?"},
+  {msg:"Because I chose you.", btn:"🥹"},
 
-  // Final Valentine question
-  { msg:"So if I was brave enough to ask…", btn:"Ask" },
-  { msg:"And honest about how I feel…", btn:"Okay" },
-  { msg:"Will you be my Valentine and Future Partner? 💘", btns:["YES","NO"] }
+  // Transition to final Valentine
+  {msg:"So if I was brave enough to ask... ✨", btn:"Ask"},
+  {msg:"And honest about how I feel... ✨", btn:"Okay"}
 ];
 
-let seqIndex = 0;
+// Final YES/NO
+const finalQuestion = {
+  msg:"Will you be my Valentine and Future Partner? 💘",
+  yesBtn:"YES",
+  noBtn:"NO",
+  noMessages:[
+    "Are you sure?",
+    "pls sleepyhead 🥺",
+    "mangluod nako 😭",
+    "Yes and unli sweets for you 🍬",
+    "Pleeaaaaseee 😖",
+    "Caring btaw 😖",
+    "Cute ha 😖",
+    "sabog daw pero gwapa 😭",
+    "maawa ka naman 😭",
+    "kusion ang mo di",
+    "Blehhh",
+    "Sincere na kaya ko 🥺",
+    "No lies here 🥺",
+    "Trust me? 😖",
+    "Yes or Yes? 😖"
+  ]
+};
 
-// Show next sequence item
-function nextSequence(){
-  if(seqIndex>=sequence.length) return;
+let seqIndex=0;
+let yesScale=1;
 
-  const item = sequence[seqIndex];
-
-  // Poem special
-  if(item.poem){
-    mainBtn.style.display="none";
-    let i=0;
-    function showLine(){
-      if(i>=item.lines.length){
-        mainBtn.style.display="inline-block";
-        mainBtn.textContent=item.btn;
-        return;
-      }
-      fade(mainText, ()=>{ mainText.textContent=item.lines[i]; });
-      i++;
-      setTimeout(showLine,1500);
-    }
-    showLine();
-    seqIndex++;
+function showNext(){
+  const step = flow[seqIndex];
+  if(!step) {
+    startFinalQuestion();
     return;
   }
 
-  // Standard messages
-  fade(mainText, ()=>{ mainText.textContent=item.msg; });
-  if(item.btns){
-    mainBtn.style.display="none";
-    item.btns.forEach(opt=>{
-      const btn=document.createElement('button');
-      btn.textContent=opt;
-      btn.style.margin="0 8px";
-      btn.onclick=()=>{
-        if(opt==="YES") showYes();
-        else showNo();
-      };
-      document.querySelector('.buttons').appendChild(btn);
-    });
+  if(step.poem){
+    messageEl.style.opacity=0;
+    poemEl.textContent=step.poem;
+    poemEl.style.opacity=1;
+    btn.textContent=step.btn;
   } else {
-    mainBtn.textContent=item.btn;
-    mainBtn.style.display="inline-block";
-    mainBtn.onclick=()=>{
-      seqIndex++;
-      nextSequence();
-    };
+    poemEl.style.opacity=0;
+    messageEl.textContent=step.msg;
+    messageEl.style.opacity=1;
+    btn.textContent=step.btn;
   }
+
   seqIndex++;
 }
 
-// YES/NO for Valentine
-function showYes(){
-  document.querySelector('h1').textContent="YAYYYY 💖";
-  message.textContent="I like you so much 💕";
-  document.querySelectorAll('.buttons button').forEach(b=>b.style.display="none");
-  confettiBurst(160);
-  heartRain(60);
+btn.addEventListener('click',()=>{
+  messageEl.style.opacity=0;
+  setTimeout(showNext,500);
+});
+
+function startFinalQuestion(){
+  poemEl.style.opacity=0;
+  let h1 = document.querySelector('h1');
+  h1.textContent=finalQuestion.msg;
+  messageEl.textContent="";
+  btn.style.display="none";
+
+  const yesBtn = document.createElement('button');
+  yesBtn.textContent=finalQuestion.yesBtn;
+  yesBtn.id="yesBtn";
+  const noBtn = document.createElement('button');
+  noBtn.textContent=finalQuestion.noBtn;
+  noBtn.id="noBtn";
+
+  const btnDiv = document.createElement('div');
+  btnDiv.style.display='flex';
+  btnDiv.style.justifyContent='center';
+  btnDiv.style.gap='16px';
+  btnDiv.appendChild(yesBtn);
+  btnDiv.appendChild(noBtn);
+  document.querySelector('.card').appendChild(btnDiv);
+
+  let noClickCount=0;
+
+  noBtn.addEventListener('click',()=>{
+    noBtn.textContent=finalQuestion.noMessages[Math.min(noClickCount,finalQuestion.noMessages.length-1)];
+    noClickCount++;
+    yesScale+=0.18;
+    yesBtn.style.transform=`scale(${yesScale})`;
+  });
+
+  yesBtn.addEventListener('click',()=>{
+    h1.textContent="YAYYYY 💖";
+    messageEl.textContent="I like you so much 💕";
+    yesBtn.style.display='none';
+    noBtn.style.display='none';
+    confettiBurst(160);
+    heartRain(60);
+  });
 }
-
-function showNo(){
-  const noBtn = document.querySelector('.buttons button:nth-child(2)');
-  noBtn.textContent=noTexts[Math.min(noClickCount,noTexts.length-1)];
-  noClickCount++;
-  const yesBtn = document.querySelector('.buttons button:nth-child(1)');
-  yesScale+=0.18;
-  yesBtn.style.transform=`scale(${yesScale})`;
-}
-
-// Start first sequence
-nextSequence();
-
 </script>
 </body>
 </html>

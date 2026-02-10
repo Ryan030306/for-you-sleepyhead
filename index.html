@@ -58,7 +58,7 @@ button {
 }
 /* Poem container */
 .poem {
-  max-height: 55vh;
+  max-height: 50vh;
   overflow-y: auto;
   text-align: left;
   padding: 10px 14px;
@@ -95,16 +95,36 @@ button {
 @keyframes confettiFall {
   to { transform: translateY(110vh) rotate(720deg); }
 }
+/* Mobile tap prompt */
+#tapPrompt {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(255,255,255,0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 500;
+  cursor: pointer;
+  text-align: center;
+}
+#tapPrompt h2 {
+  color:#ff4d6d;
+  font-size:24px;
+}
 @media (max-width: 360px) {
   .card { padding: 22px; }
   button { font-size: clamp(14px,4vw,16px); }
-  .poem { max-height: 50vh; }
+  .poem { max-height: 45vh; }
 }
 </style>
 </head>
 <body>
 
 <audio id="bgMusic" src="when-she-loved-me.mp3" loop muted playsinline></audio>
+<div id="tapPrompt"><h2>Tap anywhere to turn on music 🎵</h2></div>
 
 <div class="card" id="card">
   <h1 id="text">Hey Sleepyhead 😴</h1>
@@ -115,12 +135,34 @@ button {
 
 <script>
 const bgMusic = document.getElementById('bgMusic');
+const tapPrompt = document.getElementById('tapPrompt');
 const textEl = document.getElementById('text');
 const buttonContainer = document.getElementById('buttonContainer');
 
-bgMusic.play().catch(()=>{}); // autoplay muted
+// Play muted music immediately
+bgMusic.play().catch(()=>{});
 
-// Sequence messages
+// Detect mobile
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+if(isMobile){
+  tapPrompt.style.display = 'flex';
+  tapPrompt.addEventListener('click', () => {
+    bgMusic.muted = false;
+    bgMusic.volume = 0.8;
+    bgMusic.play().catch(()=>{});
+    tapPrompt.style.display = 'none';
+  });
+}else{
+  document.addEventListener('click', ()=>{
+    if(bgMusic.muted){
+      bgMusic.muted = false;
+      bgMusic.volume = 0.8;
+      bgMusic.play().catch(()=>{});
+    }
+  }, {once:true});
+}
+
+// Sequence of messages including poem
 const sequence = [
   {msg:"Hey Sleepyhead 😴", btn:"Hey!"},
   {msg:"Tired?", btn:"Yes!"},
@@ -157,18 +199,17 @@ And now I hold His gift of love.
 
 let seqIndex = 0;
 
-function nextSequence() {
+function nextSequence(){
   seqIndex++;
   if(seqIndex < sequence.length){
     textEl.innerHTML = sequence[seqIndex].msg;
     buttonContainer.innerHTML = `<button id="nextBtn">${sequence[seqIndex].btn}</button>`;
     document.getElementById('nextBtn').addEventListener('click', nextSequence);
-    unmuteMusic(); // music unmute on first click
+    unmuteMusic();
   } else {
     showValentinePrompt();
   }
 }
-
 document.getElementById('nextBtn').addEventListener('click', nextSequence);
 
 // Valentine YES/NO

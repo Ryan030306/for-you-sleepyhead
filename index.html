@@ -62,7 +62,7 @@
     color: #ff4d6d;
     font-weight: 700;
   }
-  /* Floating hearts (ambient) */
+  /* Floating hearts */
   .heart {
     position: fixed;
     bottom: -20px;
@@ -92,6 +92,7 @@
   }
   /* Mobile tap prompt */
   #tapPrompt {
+    display: none;
     position: fixed;
     top: 0; left: 0;
     width: 100vw; height: 100vh;
@@ -137,6 +138,7 @@ const message = document.getElementById('message');
 const bgMusic = document.getElementById('bgMusic');
 const tapPrompt = document.getElementById('tapPrompt');
 
+// NO messages
 const noTexts = [
   "Are you sure?",
   "pls sleepyhead 🥺",
@@ -166,7 +168,7 @@ noBtn.addEventListener('click', () => {
   yesBtn.style.transform = `scale(${yesScale})`;
 });
 
-// Ambient floating hearts
+// Floating hearts
 function createHeart() {
   const heart = document.createElement('div');
   heart.className = 'heart';
@@ -178,7 +180,7 @@ function createHeart() {
 }
 setInterval(createHeart, 500);
 
-// Confetti burst
+// Confetti
 function confettiBurst(count = 120) {
   for (let i = 0; i < count; i++) {
     const c = document.createElement('div');
@@ -191,7 +193,7 @@ function confettiBurst(count = 120) {
   }
 }
 
-// Extra hearts on YES
+// Hearts on YES
 function heartRain(count = 40) {
   for (let i = 0; i < count; i++) {
     const h = document.createElement('div');
@@ -204,12 +206,21 @@ function heartRain(count = 40) {
   }
 }
 
-// Enable sound after first tap (mobile-safe)
-tapPrompt.addEventListener('click', () => {
+// Detect mobile
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+if (isMobile) {
+  tapPrompt.style.display = 'flex';
+  tapPrompt.addEventListener('click', () => {
+    bgMusic.volume = 0.8;
+    bgMusic.play().catch(()=>{});
+    tapPrompt.style.display = 'none';
+  });
+} else {
+  // Desktop autoplay
   bgMusic.volume = 0.8;
   bgMusic.play().catch(()=>{});
-  tapPrompt.style.display = 'none';
-});
+}
 
 // YES button
 yesBtn.addEventListener('click', () => {

@@ -56,6 +56,18 @@ button {
   font-size: clamp(16px, 4vw, 20px);
   font-weight: 700;
 }
+/* Poem container */
+.poem {
+  max-height: 60vh;
+  overflow-y: auto;
+  text-align: left;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #fff0f5;
+  font-size: clamp(14px,3.5vw,16px);
+  margin-bottom: 16px;
+}
+/* Floating hearts */
 .heart {
   position: fixed;
   bottom: -20px;
@@ -69,6 +81,7 @@ button {
   0% { transform: translateY(0) scale(1); opacity: 0.9; }
   100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
 }
+/* Confetti */
 .confetti {
   position: fixed;
   top: -10px;
@@ -85,6 +98,7 @@ button {
 @media (max-width: 360px) {
   .card { padding: 22px; }
   button { font-size: clamp(14px,4vw,16px); }
+  .poem { max-height: 55vh; }
 }
 </style>
 </head>
@@ -113,8 +127,7 @@ const sequence = [
   {msg:"It's okay, hopefully this will cheer you up 💕", btn:"Okay!"},
   {msg:"If I were to describe you in my life it would be...", btn:"What?"},
   {msg:"Four Leaf Clover 🍀", btn:"Why?"},
-  {msg:`<p>
-Four Leaf Clover<br><br>
+  {msg:`<div class="poem">
 I found you where the green grass grew,<br>
 In quiet days and morning dew.<br>
 I walked alone with open hands,<br>
@@ -139,7 +152,7 @@ So in this clover, rare and small,<br>
 I see His purpose through it all.<br>
 By faith alone our paths once clove,<br>
 And now I hold His gift of love.
-</p>`, btn:"Cute!"}
+</div>`, btn:"Cute!"}
 ];
 
 // Track sequence
@@ -152,7 +165,6 @@ function nextSequence() {
     buttonContainer.innerHTML = `<button id="nextBtn">${sequence[seqIndex].btn}</button>`;
     document.getElementById('nextBtn').addEventListener('click', nextSequence);
   } else {
-    // After poem, show Valentine prompt
     showValentinePrompt();
   }
 }

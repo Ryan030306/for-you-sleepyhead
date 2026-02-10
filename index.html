@@ -36,11 +36,13 @@ h1 {
 button {
   border: none;
   border-radius: 14px;
-  padding: 12px 22px;
-  font-size: clamp(16px, 4vw, 18px);
+  padding: 12px 16px;
+  font-size: clamp(14px,4vw,16px);
   cursor: pointer;
   margin: 6px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  white-space: normal;
+  min-width: 80px;
 }
 #yesBtn {
   background-color: #ff4d6d;
@@ -55,8 +57,13 @@ button {
   margin-top: 16px;
   font-size: clamp(16px, 4vw, 20px);
   font-weight: 700;
+  max-height: 30vh;
+  overflow-y: auto;
+  word-wrap: break-word;
+  padding: 6px 10px;
+  background: #fff0f5;
+  border-radius: 12px;
 }
-/* Poem container */
 .poem {
   max-height: 50vh;
   overflow-y: auto;
@@ -67,7 +74,6 @@ button {
   font-size: clamp(14px,3.5vw,16px);
   margin-bottom: 16px;
 }
-/* Floating hearts */
 .heart {
   position: fixed;
   bottom: -20px;
@@ -81,7 +87,6 @@ button {
   0% { transform: translateY(0) scale(1); opacity: 0.9; }
   100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
 }
-/* Confetti */
 .confetti {
   position: fixed;
   top: -10px;
@@ -95,7 +100,6 @@ button {
 @keyframes confettiFall {
   to { transform: translateY(110vh) rotate(720deg); }
 }
-/* Mobile tap prompt */
 #tapPrompt {
   display: none;
   position: fixed;
@@ -153,16 +157,17 @@ if(isMobile){
     tapPrompt.style.display = 'none';
   });
 }else{
+  tapPrompt.style.display = 'none';
   document.addEventListener('click', ()=>{
     if(bgMusic.muted){
-      bgMusic.muted = false;
-      bgMusic.volume = 0.8;
+      bgMusic.muted=false;
+      bgMusic.volume=0.8;
       bgMusic.play().catch(()=>{});
     }
   }, {once:true});
 }
 
-// Sequence of messages including poem
+// Prompt sequence including poem and post-poem messages
 const sequence = [
   {msg:"Hey Sleepyhead 😴", btn:"Hey!"},
   {msg:"Tired?", btn:"Yes!"},
@@ -194,7 +199,10 @@ So in this clover, rare and small,<br>
 I see His purpose through it all.<br>
 By faith alone our paths once clove,<br>
 And now I hold His gift of love.
-</div>`, btn:"Cute!"}
+</div>`, btn:"Cute!"},
+  {msg:"That's how much you mean to me 💖", btn:"Thank You"},
+  {msg:"But the most important question remains...", btn:"What?"},
+  {msg:"If I was given a chance then", btn:"Then"}
 ];
 
 let seqIndex = 0;
@@ -247,7 +255,7 @@ function showValentinePrompt(){
   let yesScale = 1;
 
   noBtn.addEventListener('click', () => {
-    noBtn.textContent = noTexts[Math.min(noClickCount, noTexts.length-1)];
+    message.textContent = noTexts[Math.min(noClickCount, noTexts.length-1)];
     noClickCount++;
     yesScale += 0.18;
     yesBtn.style.transform = `scale(${yesScale})`;

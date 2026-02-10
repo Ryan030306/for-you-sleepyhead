@@ -24,6 +24,8 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       max-width: 420px;
       width: 92%;
+      position: relative;
+      z-index: 100;
     }
 
     h1 {
@@ -46,6 +48,8 @@
       font-size: clamp(16px, 4.5vw, 18px);
       cursor: pointer;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+      z-index: 101;
     }
 
     #yesBtn {
@@ -74,6 +78,7 @@
       animation: floatUp 6s linear infinite;
       opacity: 0.85;
       pointer-events: none;
+      z-index: 1;
     }
     @keyframes floatUp {
       0% { transform: translateY(0) scale(1); opacity: 0.9; }
@@ -89,9 +94,24 @@
       opacity: 0.9;
       animation: confettiFall linear forwards;
       pointer-events: none;
+      z-index: 1;
     }
     @keyframes confettiFall {
       to { transform: translateY(110vh) rotate(720deg); }
+    }
+
+    #soundPrompt {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background:#ff4d6d;
+      color:#fff;
+      padding:10px 14px;
+      border-radius:14px;
+      font-size:14px;
+      box-shadow:0 6px 14px rgba(0,0,0,.25);
+      z-index: 200;
     }
 
     @media (max-width: 360px) {
@@ -101,10 +121,9 @@
   </style>
 </head>
 <body>
-  <!-- Background music (mobile-safe: plays after user taps YES) -->
-  <!-- Put your audio file in the same folder and name it exactly as below -->
   <audio id="bgMusic" src="when-she-loved-me.mp3" autoplay loop muted playsinline></audio>
-  <div id="soundPrompt" style="position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#ff4d6d;color:#fff;padding:10px 14px;border-radius:14px;font-size:14px;box-shadow:0 6px 14px rgba(0,0,0,.25);z-index:999;">🔊 Tap to turn sound on</div>
+  <div id="soundPrompt">🔊 Tap to turn sound on</div>
+
   <div class="card">
     <h1>Will you be my Valentine and partner? 💘</h1>
     <div class="buttons">
@@ -112,12 +131,6 @@
       <button id="noBtn">NO</button>
     </div>
     <div class="message" id="message"></div>
-    <div class="gallery" id="gallery" style="display:none;">
-      <!-- Replace src with her photos (with permission) -->
-      <img src="photo1.jpg" alt="cute moment" />
-      <img src="photo2.jpg" alt="cute moment" />
-      <img src="photo3.jpg" alt="cute moment" />
-    </div>
   </div>
 
   <script>
@@ -191,28 +204,20 @@
         bgMusic.play().catch(()=>{});
       }
       if (soundPrompt) soundPrompt.style.display = 'none';
-      document.removeEventListener('click', enableSound);
-      document.removeEventListener('touchstart', enableSound);
     }
     document.addEventListener('click', enableSound, { once: true });
     document.addEventListener('touchstart', enableSound, { once: true });
 
-    yesBtn.addEventListener('click', async () => {
+    yesBtn.addEventListener('click', () => {
       document.querySelector('h1').textContent = 'YAYYYY 💖';
       message.textContent = 'I like you so much 💕';
       yesBtn.style.display = 'none';
       noBtn.style.display = 'none';
-
-      // Ensure sound is on
       enableSound();
-
-      confettiBurst(160);
-      heartRain(60);
-    }); } catch (e) {}
-
       confettiBurst(160);
       heartRain(60);
     });
   </script>
 </body>
 </html>
+
